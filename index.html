@@ -96,6 +96,23 @@ clanky.reverse().forEach(clanek => {
   `;
   vypis.appendChild(div);
 });
+const clanky = JSON.parse(localStorage.getItem("clanky")) || [];
+const vypis = document.getElementById("vypisClanku");
+
+clanky.reverse().forEach(clanek => {
+  if (clanek.showOnHomepage) {
+    const div = document.createElement("div");
+    div.className = "clanek";
+    div.innerHTML = `
+      <h3>${clanek.title}</h3>
+      <p><strong>Sekce:</strong> ${clanek.section}</p>
+      <p>${clanek.content}</p>
+      ${clanek.image ? `<img src="${clanek.image}" alt="Obrázek článku" style="max-width:100%;"/>` : ""}
+      <hr/>
+    `;
+    vypis.appendChild(div);
+  }
+});
 
   </script>
   <footer class="footer">

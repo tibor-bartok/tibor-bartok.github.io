@@ -57,7 +57,11 @@
         <textarea id="content" name="content" rows="10" placeholder="Obsah článku" required></textarea>
         <label for="image">Obrázek k článku:</label>
         <input type="file" id="image" name="image" accept="image/*" />
-        <button type="submit">Publikovat</button>
+        <label>
+          <input type="checkbox" id="showOnHomepage" />
+          Zobrazit na hlavní stránce
+        </label>
+      </button type="submit">Publikovat</button>
       </form>
     </section>
   </main>
@@ -149,6 +153,17 @@ function ulozClanek(article) {
   alert("Článek byl úspěšně publikován.");
   document.getElementById("articleForm").reset();
 }
+const showOnHomepage = document.getElementById("showOnHomepage").checked;
+
+const article = {
+  title,
+  section,
+  content,
+  date: new Date().toISOString(),
+  image: null,
+  showOnHomepage // nová vlastnost
+};
+
 
   </script>
    <footer class="footer">
