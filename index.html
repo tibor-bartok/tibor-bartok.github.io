@@ -49,7 +49,7 @@
   </main>
 
   <script>
-    // Zobrazení odkazu "Přidat článek" mimo window.onload
+    // Zobrazit odkaz "Přidat článek", pokud je uživatel přihlášen
     if (localStorage.getItem("prihlasen") === "ano") {
       const odkazPridat = document.getElementById("odkaz-pridat");
       if (odkazPridat) {
@@ -61,31 +61,31 @@
     window.onload = function () {
       // Navigace
       const nav = document.getElementById("navigace");
-      nav.innerHTML = '<a href="index.html">Domů</a>';
+      if (nav) {
+        nav.innerHTML = '<a href="index.html">Domů</a>';
   
-      if (localStorage.getItem("prihlasen") === "ano") {
-        const odhlasitBtn = document.createElement("button");
-        odhlasitBtn.textContent = "Odhlásit se";
-        odhlasitBtn.onclick = function () {
-          localStorage.removeItem("prihlasen");
-          window.location.href = "index.html";
-        };
-        nav.appendChild(odhlasitBtn);
-      } else {
-        const prihlasitLink = document.createElement("a");
-        prihlasitLink.href = "login/login.html";
-        prihlasitLink.textContent = "Přihlásit se";
-        nav.appendChild(prihlasitLink);
+        if (localStorage.getItem("prihlasen") === "ano") {
+          const odhlasitBtn = document.createElement("button");
+          odhlasitBtn.textContent = "Odhlásit se";
+          odhlasitBtn.onclick = function () {
+            localStorage.removeItem("prihlasen");
+            window.location.href = "index.html";
+          };
+          nav.appendChild(odhlasitBtn);
+        } else {
+          const prihlasitLink = document.createElement("a");
+          prihlasitLink.href = "login/login.html";
+          prihlasitLink.textContent = "Přihlásit se";
+          nav.appendChild(prihlasitLink);
+        }
       }
   
       // Hamburger menu
       const hamburger = document.getElementById("hamburger");
-      if (hamburger) {
+      const mobilniMenu = document.getElementById("mobilniMenu");
+      if (hamburger && mobilniMenu) {
         hamburger.onclick = function () {
-          const menu = document.getElementById("mobilniMenu");
-          if (menu) {
-            menu.classList.toggle("zobrazit");
-          }
+          mobilniMenu.classList.toggle("zobrazit");
         };
       }
   
@@ -111,6 +111,7 @@
       }
     };
   </script>
+  
   
 
 
