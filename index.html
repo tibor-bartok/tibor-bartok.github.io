@@ -12,29 +12,26 @@
       <img src="pictures/logo.png" alt="Logo obce Šestajovice" class="logo">
       <h1 class="hlavni-nadpis">Obec Šestajovice – lépe</h1>
     </a>
+
     <nav class="hlavni-navigace">
       <a href="login/login.html">Přihlášení</a>
       <span id="odkaz-pridat"></span>
     </nav>
-    <div id="hamburger">☰ Menu</div>
-<div id="mobilniMenu">
-  <div id="odkaz-pridat"></div>
-</div>
 
-    
+    <div id="hamburger">☰ Menu</div>
+
     <nav class="mobilni-menu" id="mobilniMenu">
       <ul>
-        <li><a href="../aktuality.html">Aktuality</a></li>
-        <li><a href="../urad.html">Úřad</a></li>
-        <li><a href="../odpad.html">Svoz odpadu</a></li>
-        <li><a href="../volby.html">Komunální volby</a></li>
-        <li><a href="../kultura.html">Kultura</a></li>
-        <li><a href="../sport.html">Sport</a></li>
-        <li><a href="../oznameni.html">Oznámení</a></li>
-        <li><a href="../komunita.html">Komunita</a></li>
+        <li><a href="aktuality.html">Aktuality</a></li>
+        <li><a href="urad.html">Úřad</a></li>
+        <li><a href="odpad.html">Svoz odpadu</a></li>
+        <li><a href="volby.html">Komunální volby</a></li>
+        <li><a href="kultura.html">Kultura</a></li>
+        <li><a href="sport.html">Sport</a></li>
+        <li><a href="oznameni.html">Oznámení</a></li>
+        <li><a href="komunita.html">Komunita</a></li>
       </ul>
     </nav>
-    
   </header>
 
   <main>
@@ -42,89 +39,10 @@
       <h2>Vítejte na našem webu esestajovice.cz</h2>
       <p>(Ne)oficiální stránka pro sdílení informací, nápadů a komunitních akcí pro Šestajovické obyvatele.</p>
     </section>
+
     <section id="vypisClanku"></section>
-
-
-
   </main>
 
-  <script>
-    // Zobrazit odkaz "Přidat článek", pokud je uživatel přihlášen
-    if (localStorage.getItem("prihlasen") === "ano") {
-      const odkazPridat = document.getElementById("odkaz-pridat");
-      if (odkazPridat) {
-        odkazPridat.innerHTML =
-          '<a href="add-article/add-article.html">Přidat článek</a>';
-      }
-    }
-  
-    window.onload = function () 
-      // Navigace
-      const nav = document.getElementById("navigace");
-      if (nav) {
-        nav.innerHTML = '<a href="index.html">Domů</a>';
-  
-        if (localStorage.getItem("prihlasen") === "ano") {
-          const odhlasitBtn = document.createElement("button");
-          odhlasitBtn.textContent = "Odhlásit se";
-          odhlasitBtn.onclick = function () {
-            localStorage.removeItem("prihlasen");
-            window.location.href = "index.html";
-          };
-          nav.appendChild(odhlasitBtn);
-        } else {
-          const prihlasitLink = document.createElement("a");
-          prihlasitLink.href = "login/login.html";
-          prihlasitLink.textContent = "Přihlásit se";
-          nav.appendChild(prihlasitLink);
-        }
-      }
-  
-      // Hamburger menu
-      const hamburger = document.getElementById("hamburger");
-      const mobilniMenu = document.getElementById("mobilniMenu");
-      if (hamburger && mobilniMenu) {
-        hamburger.onclick = function () {
-          mobilniMenu.classList.toggle("zobrazit");
-        };
-      
-
-  
-      // Výpis článků
-      const clanky = JSON.parse(localStorage.getItem("clanky")) || [];
-      const vypis = document.getElementById("vypisClanku");
-  
-      if (vypis) {
-        clanky.reverse().forEach(clanek => {
-          if (clanek.showOnHomepage) {
-            const div = document.createElement("div");
-            div.className = "clanek";
-            div.innerHTML = `
-              <h3>${clanek.title}</h3>
-              <p><strong>Sekce:</strong> ${clanek.section}</p>
-              <p>${clanek.content}</p>
-              ${clanek.image ? `<img src="${clanek.image}" alt="Obrázek článku" style="max-width:100%;"/>` : ""}
-              <hr/>
-            `;
-            vypis.appendChild(div);
-          }
-        });
-      }
-    };
-
-    document.getElementById("hamburger").onclick = function () {
-  const menu = document.getElementById("mobilniMenu");
-  if (menu) {
-    menu.classList.toggle("zobrazit");
-  }
-};
-
-  </script>
-  
-  
-
-
-  
   <footer class="footer">
     <div class="footer-box">
       <div class="footer-title">
@@ -145,6 +63,46 @@
       </nav>
     </div>
   </footer>
-  
+
+  <script>
+    window.onload = function () {
+      // Zobrazit odkaz "Přidat článek", pokud je uživatel přihlášen
+      const odkazPridat = document.getElementById("odkaz-pridat");
+      if (localStorage.getItem("prihlasen") === "ano" && odkazPridat) {
+        odkazPridat.innerHTML =
+          '<a href="add-article/add-article.html">Přidat článek</a>';
+      }
+
+      // Hamburger menu toggle
+      const hamburger = document.getElementById("hamburger");
+      const mobilniMenu = document.getElementById("mobilniMenu");
+      if (hamburger && mobilniMenu) {
+        hamburger.onclick = function () {
+          mobilniMenu.classList.toggle("zobrazit");
+        };
+      }
+
+      // Výpis článků
+      const clanky = JSON.parse(localStorage.getItem("clanky")) || [];
+      const vypis = document.getElementById("vypisClanku");
+
+      if (vypis) {
+        clanky.reverse().forEach(clanek => {
+          if (clanek.showOnHomepage) {
+            const div = document.createElement("div");
+            div.className = "clanek";
+            div.innerHTML = `
+              <h3>${clanek.title}</h3>
+              <p><strong>Sekce:</strong> ${clanek.section}</p>
+              <p>${clanek.content}</p>
+              ${clanek.image ? `<img src="${clanek.image}" alt="Obrázek článku" style="max-width:100%;"/>` : ""}
+              <hr/>
+            `;
+            vypis.appendChild(div);
+          }
+        });
+      }
+    };
+  </script>
 </body>
 </html>
