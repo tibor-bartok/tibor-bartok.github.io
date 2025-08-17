@@ -58,7 +58,7 @@
       }
     }
   
-    window.onload = function () {
+    window.onload = function () 
       // Navigace
       const nav = document.getElementById("navigace");
       if (nav) {
@@ -87,7 +87,8 @@
         hamburger.onclick = function () {
           mobilniMenu.classList.toggle("zobrazit");
         };
-      }
+      
+
   
       // Výpis článků
       const clanky = JSON.parse(localStorage.getItem("clanky")) || [];
@@ -110,6 +111,14 @@
         });
       }
     };
+
+    document.getElementById("hamburger").onclick = function () {
+  const menu = document.getElementById("mobilniMenu");
+  if (menu) {
+    menu.classList.toggle("zobrazit");
+  }
+};
+
   </script>
   
   
@@ -139,5 +148,3 @@
   
 </body>
 </html>
-
-
