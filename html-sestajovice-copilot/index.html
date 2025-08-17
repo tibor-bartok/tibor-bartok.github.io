@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Obec Šestajovice</title>
+  <link rel="stylesheet" href="style/main.css">
+</head>
+<body>
+  <header class="hlavni-panel">
+    <a href="index.html" class="logo-nadpis">
+      <img src="pictures/logo.png" alt="Logo obce Šestajovice" class="logo">
+      <h1 class="hlavni-nadpis">Obec Šestajovice – lépe</h1>
+    </a>
+    <nav class="hlavni-navigace">
+      <a href="login/login.html">Přihlášení</a>
+      <span id="odkaz-pridat"></span>
+    </nav>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    
+    <nav class="mobilni-menu" id="mobilniMenu">
+      <ul>
+        <li><a href="../aktuality.html">Aktuality</a></li>
+        <li><a href="../urad.html">Úřad</a></li>
+        <li><a href="../odpad.html">Svoz odpadu</a></li>
+        <li><a href="../volby.html">Komunální volby</a></li>
+        <li><a href="../kultura.html">Kultura</a></li>
+        <li><a href="../sport.html">Sport</a></li>
+        <li><a href="../oznameni.html">Oznámení</a></li>
+        <li><a href="../komunita.html">Komunita</a></li>
+      </ul>
+    </nav>
+    
+  </header>
+
+  <main>
+    <section class="uvod">
+      <h2>Vítejte na našem webu</h2>
+      <p>(Ne)oficiální stránka pro sdílení informací, nápadů a komunitních akcí v Šestajovicích.</p>
+    </section>
+
+
+  </main>
+
+  <script>
+    if (localStorage.getItem("prihlasen") === "ano") {
+      document.getElementById("odkaz-pridat").innerHTML =
+        '<a href="add-article/add-article.html">Přidat článek</a>';
+    }
+    window.onload = function () {
+  const nav = document.getElementById("navigace");
+  nav.innerHTML = '<a href="index.html">Domů</a>';
+
+  if (localStorage.getItem("prihlasen") === "ano") {
+    const odhlasitBtn = document.createElement("button");
+    odhlasitBtn.textContent = "Odhlásit se";
+    odhlasitBtn.onclick = function () {
+      localStorage.removeItem("prihlasen");
+      window.location.href = "index.html";
+    };
+    nav.appendChild(odhlasitBtn);
+  } else {
+    const prihlasitLink = document.createElement("a");
+    prihlasitLink.href = "login/login.html";
+    prihlasitLink.textContent = "Přihlásit se";
+    nav.appendChild(prihlasitLink);
+  }
+};
+document.getElementById("hamburger").onclick = function () {
+  const nav = document.getElementById("navigace");
+  nav.classList.toggle("zobrazit");
+};
+document.getElementById("hamburger").onclick = function () {
+  const menu = document.getElementById("mobilniMenu");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+};
+
+  </script>
+  <footer class="footer">
+    <div class="footer-box">
+      <div class="footer-title">
+        <h2>Obec Šestajovice</h2>
+      </div>
+      <div class="kontakt">
+        <h3>Kontakt</h3>
+        <p><a href="mailto:esestajovice@gmail.com">esestajovice@gmail.com</a></p>
+      </div>
+      <nav class="footer-menu">
+        <ul>
+          <li><a href="index.html">Úvod</a></li>
+          <li><a href="o-obci.html">O obci</a></li>
+          <li><a href="dokumenty.html">Dokumenty</a></li>
+          <li><a href="zastupitelstvo.html">Zastupitelstvo</a></li>
+          <li><a href="kontakt.html">Kontakty</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+  
+</body>
+</html>
+
+

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Přidat článek</title>
+  <link rel="stylesheet" href="../style/main.css" />
+</head>
+<body>
+  <header class="hlavni-panel">
+    <a href="../index.html" class="logo-nadpis">
+      <img src="../pictures/logo.png" alt="Logo obce Šestajovice" class="logo" />
+      <h1 class="hlavni-nadpis">Obec Šestajovice – lépe</h1>
+    </a>
+    <nav class="hlavni-navigace" id="navigace">
+      <!-- Navigace se doplní pomocí JS -->
+    </nav>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    
+    <nav class="mobilni-menu" id="mobilniMenu">
+      <ul>
+        <li><a href="../aktuality.html">Aktuality</a></li>
+        <li><a href="../urad.html">Úřad</a></li>
+        <li><a href="../odpad.html">Svoz odpadu</a></li>
+        <li><a href="../volby.html">Komunální volby</a></li>
+        <li><a href="../kultura.html">Kultura</a></li>
+        <li><a href="../sport.html">Sport</a></li>
+        <li><a href="../oznameni.html">Oznámení</a></li>
+        <li><a href="../komunita.html">Komunita</a></li>
+      </ul>
+    </nav>
+    
+  </header>
+
+  <main>
+    <section class="container">
+      <h2>Přidat nový článek</h2>
+      <form id="articleForm">
+        <label for="title">Nadpis článku:</label>
+        <input type="text" id="title" name="title" placeholder="Nadpis článku" required />
+
+        <label for="section">Sekce článku:</label>
+        <select id="section" name="section" required>
+          <option value="">-- Vyberte sekci --</option>
+          <option value="zpravy">Zprávy</option>
+          <option value="kultura">Kultura</option>
+          <option value="sport">Sport</option>
+          <option value="oznameni">Oznámení</option>
+          <option value="komunita">Komunita</option>
+        </select>
+
+        <label for="content">Obsah článku:</label>
+        <textarea id="content" name="content" rows="10" placeholder="Obsah článku" required></textarea>
+        <label for="image">Obrázek k článku:</label>
+        <input type="file" id="image" name="image" accept="image/*" />
+        <button type="submit">Publikovat</button>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    // Kontrola přihlášení
+    if (localStorage.getItem("prihlasen") !== "ano") {
+      window.location.href = "../login/login.html";
+    }
+
+    // Dynamická navigace
+    window.onload = function () {
+      const nav = document.getElementById("navigace");
+      nav.innerHTML = '<a href="../index.html">Domů</a>';
+
+      if (localStorage.getItem("prihlasen") === "ano") {
+        const odhlasitBtn = document.createElement("button");
+        odhlasitBtn.textContent = "Odhlásit se";
+        odhlasitBtn.onclick = function () {
+          localStorage.removeItem("prihlasen");
+          window.location.href = "../index.html";
+        };
+        nav.appendChild(odhlasitBtn);
+      } else {
+        const prihlasitLink = document.createElement("a");
+        prihlasitLink.href = "../login/login.html";
+        prihlasitLink.textContent = "Přihlásit se";
+        nav.appendChild(prihlasitLink);
+      }
+    };
+
+    // Odeslání článku
+    document.getElementById("articleForm").onsubmit = function (e) {
+      e.preventDefault();
+      const title = document.getElementById("title").value.trim();
+      const section = document.getElementById("section").value;
+      const content = document.getElementById("content").value.trim();
+
+      if (title && section && content) {
+        alert(
+          "Článek byl publikován:\n\n" +
+          "Nadpis: " + title +
+          "\nSekce: " + section +
+          "\n\n" + content
+        );
+        document.getElementById("articleForm").reset();
+      } else {
+        alert("Prosím vyplňte všechna pole.");
+      }
+    };
+    document.getElementById("hamburger").onclick = function () {
+  const menu = document.getElementById("mobilniMenu");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+};
+
+  </script>
+   <footer class="footer">
+    <div class="footer-box">
+      <div class="footer-title">
+        <h2>Obec Šestajovice</h2>
+      </div>
+      <div class="kontakt">
+        <h3>Kontakt</h3>
+        <p><a href="mailto:esestajovice@gmail.com">esestajovice@gmail.com</a></p>
+      </div>
+      <nav class="footer-menu">
+        <ul>
+          <li><a href="index.html">Úvod</a></li>
+          <li><a href="o-obci.html">O obci</a></li>
+          <li><a href="dokumenty.html">Dokumenty</a></li>
+          <li><a href="zastupitelstvo.html">Zastupitelstvo</a></li>
+          <li><a href="kontakt.html">Kontakty</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+  
+</body>
+</html>

@@ -1,0 +1,267 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.hlavni-panel {
+  background-color: #E20006;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #ccc;
+}
+
+.logo-nadpis {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logo {
+  height: 80px;
+  width: auto;
+  margin-right: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.hlavni-nadpis {
+  font-size: 28px;
+  color: #ffffff;
+  margin: 0;
+}
+
+.hlavni-navigace a,
+.hlavni-navigace button {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.hlavni-navigace a:hover,
+.hlavni-navigace button:hover {
+  text-decoration: underline;
+}
+
+main {
+  margin: 20px;
+}
+
+input, select, textarea {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #E20006;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+button[type="submit"]:hover {
+  background-color: #c00005;
+}
+
+.hlavni-navigace button,
+.hlavni-navigace a {
+  color: white;
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 20px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.hlavni-navigace button:hover,
+.hlavni-navigace a:hover {
+  text-decoration: underline;
+}
+
+.hlavni-navigace button {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.hlavni-navigace button:hover {
+  text-decoration: underline;
+}
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  flex: 1;
+  padding-right: 40px; /* prostor pro ikonu */
+}
+
+.toggle-icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+  
+}
+/* Základní reset pro konzistentní rozvržení */
+* {
+  box-sizing: border-box;
+}
+
+/* Formulářové prvky */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 35px;
+  height: 30px;
+  cursor: pointer;
+  margin-left: auto;
+  z-index: 1001;
+}
+
+.hamburger span {
+  display: block;
+  height: 5.5px;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+.mobilni-menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.mobilni-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobilni-menu li {
+  margin-bottom: 0.5rem;
+}
+
+.mobilni-menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Základní nastavení stránky */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+/* Styl footeru */
+.footer {
+  background-color: #E20006;
+  color: #222;
+  padding: 30px 20px;
+  border-top: 1px solid #ccc;
+}
+
+.footer-box {
+  text-align: center;
+}
+
+.footer-title h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #ffffff;
+}
+
+.kontakt h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.kontakt a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.kontakt a:hover {
+  text-decoration: underline;
+}
+
+.footer-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0 0;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-menu a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.footer-menu a:hover {
+  text-decoration: underline;
+}

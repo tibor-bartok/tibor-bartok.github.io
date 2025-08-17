@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Přihlášení</title>
+  <link rel="stylesheet" href="../style/main.css" />
+</head>
+<body>
+  <header class="hlavni-panel">
+    <a href="../index.html" class="logo-nadpis">
+      <img src="../pictures/logo.png" alt="Logo obce Šestajovice" class="logo" />
+      <h1 class="hlavni-nadpis">Obec Šestajovice – lépe</h1>
+    </a>
+    <nav class="hlavni-navigace" id="navigace">
+      <!-- Navigace se doplní pomocí JS -->
+    </nav>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    
+    <nav class="mobilni-menu" id="mobilniMenu">
+      <ul>
+        <li><a href="../aktuality.html">Aktuality</a></li>
+        <li><a href="../urad.html">Úřad</a></li>
+        <li><a href="../odpad.html">Svoz odpadu</a></li>
+        <li><a href="../volby.html">Komunální volby</a></li>
+        <li><a href="../kultura.html">Kultura</a></li>
+        <li><a href="../sport.html">Sport</a></li>
+        <li><a href="../oznameni.html">Oznámení</a></li>
+        <li><a href="../komunita.html">Komunita</a></li>
+      </ul>
+    </nav>
+    
+  </header>
+
+  <main class="container">
+    <h2>Přihlášení</h2>
+    <p>Zadejte své přihlašovací údaje:</p>
+    <form id="loginForm">
+      <input type="text" id="username" name="username" placeholder="Uživatelské jméno" required />
+      <div class="password-wrapper">
+        <input type="password" id="password" name="password" placeholder="Heslo" required />
+        <span id="togglePassword" class="toggle-icon">👁️</span>
+      </div>
+      
+      </label>
+      <button type="submit">Přihlásit se</button>
+      
+</label>
+
+    </form>
+  </main>
+
+  <script>
+    // Dynamická navigace
+    window.onload = function () {
+      const nav = document.getElementById("navigace");
+      nav.innerHTML = '<a href="../index.html">Domů</a>';
+
+      if (localStorage.getItem("prihlasen") === "ano") {
+        const odhlasitBtn = document.createElement("button");
+        odhlasitBtn.textContent = "Odhlásit se";
+        odhlasitBtn.onclick = function () {
+          localStorage.removeItem("prihlasen");
+          window.location.href = "../index.html";
+        };
+        nav.appendChild(odhlasitBtn);
+      } else {
+        const prihlasitLink = document.createElement("a");
+        prihlasitLink.href = "login.html";
+        prihlasitLink.textContent = "Přihlásit se";
+        nav.appendChild(prihlasitLink);
+      }
+    };
+
+    // Přihlašovací logika
+    document.getElementById("loginForm").onsubmit = function (e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username === "admin" && password === "°°admin°°") {
+        localStorage.setItem("prihlasen", "ano");
+        window.location.href = "../index.html";
+      } else {
+        alert("Neplatné přihlašovací údaje.");
+      }
+    };
+    document.getElementById("togglePassword").addEventListener("click", function () {
+  const passwordInput = document.getElementById("password");
+  const isVisible = passwordInput.type === "text";
+  passwordInput.type = isVisible ? "password" : "text";
+  this.textContent = isVisible ? "👁️" : "🙈";
+  this.title = isVisible ? "Zobrazit heslo" : "Skrýt heslo";
+});
+document.getElementById("hamburger").onclick = function () {
+  const menu = document.getElementById("mobilniMenu");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+};
+
+  </script>
+   <footer class="footer">
+    <div class="footer-box">
+      <div class="footer-title">
+        <h2>Obec Šestajovice</h2>
+      </div>
+      <div class="kontakt">
+        <h3>Kontakt</h3>
+        <p><a href="mailto:esestajovice@gmail.com">esestajovice@gmail.com</a></p>
+      </div>
+      <nav class="footer-menu">
+        <ul>
+          <li><a href="index.html">Úvod</a></li>
+          <li><a href="o-obci.html">O obci</a></li>
+          <li><a href="dokumenty.html">Dokumenty</a></li>
+          <li><a href="zastupitelstvo.html">Zastupitelstvo</a></li>
+          <li><a href="kontakt.html">Kontakty</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+  
+</body>
+</html>
+
+
+
+
+
