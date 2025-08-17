@@ -1,11 +1,17 @@
+/* Reset a základní nastavení */
+* {
+  box-sizing: border-box;
+}
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
   font-family: Arial, sans-serif;
   background-color: #ffffff;
   color: #000000;
 }
 
+/* Hlavní panel */
 .hlavni-panel {
   background-color: #E20006;
   padding: 10px 20px;
@@ -14,13 +20,11 @@ html, body {
   align-items: center;
   border-bottom: 2px solid #ccc;
 }
-
 .logo-nadpis {
   display: flex;
   align-items: center;
   text-decoration: none;
 }
-
 .logo {
   height: 80px;
   width: auto;
@@ -29,17 +33,16 @@ html, body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
 }
-
 .logo:hover {
   transform: scale(1.05);
 }
-
 .hlavni-nadpis {
   font-size: 28px;
   color: #ffffff;
   margin: 0;
 }
 
+/* Navigace */
 .hlavni-navigace a,
 .hlavni-navigace button {
   margin-left: 20px;
@@ -51,106 +54,12 @@ html, body {
   cursor: pointer;
   font-size: 16px;
 }
-
 .hlavni-navigace a:hover,
 .hlavni-navigace button:hover {
   text-decoration: underline;
 }
 
-main {
-  margin: 20px;
-}
-
-input, select, textarea {
-  width: 100%;
-  max-width: 600px;
-  margin-bottom: 10px;
-  padding: 8px;
-  font-size: 16px;
-}
-
-button[type="submit"] {
-  padding: 10px 20px;
-  background-color: #E20006;
-  color: #ffffff;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  border-radius: 4px;
-}
-
-button[type="submit"]:hover {
-  background-color: #c00005;
-}
-
-.hlavni-navigace button,
-.hlavni-navigace a {
-  color: white;
-  background: none;
-  border: none;
-  font-size: 16px;
-  font-weight: bold;
-  margin-left: 20px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.hlavni-navigace button:hover,
-.hlavni-navigace a:hover {
-  text-decoration: underline;
-}
-
-.hlavni-navigace button {
-  background: none;
-  border: none;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-  margin-left: 20px;
-}
-
-.hlavni-navigace button:hover {
-  text-decoration: underline;
-}
-.password-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.password-wrapper input {
-  flex: 1;
-  padding-right: 40px; /* prostor pro ikonu */
-}
-
-.toggle-icon {
-  position: absolute;
-  right: 10px;
-  cursor: pointer;
-  font-size: 20px;
-  user-select: none;
-  
-}
-/* Základní reset pro konzistentní rozvržení */
-* {
-  box-sizing: border-box;
-}
-
-/* Formulářové prvky */
-form {
-  max-width: 600px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-input, select, textarea {
-  width: 100%;
-  padding: 0.5rem;
-  font-size: 1rem;
-}
+/* Hamburger */
 .hamburger {
   display: flex;
   flex-direction: column;
@@ -161,7 +70,6 @@ input, select, textarea {
   margin-left: auto;
   z-index: 1001;
 }
-
 .hamburger span {
   display: block;
   height: 5.5px;
@@ -169,83 +77,103 @@ input, select, textarea {
   border-radius: 8px;
 }
 
+/* Mobilní menu */
 .mobilni-menu {
   display: none;
   position: absolute;
   top: 60px;
   right: 10px;
-  background-color: white;
+  background-color: #f9f9f9;
   border: 1px solid #ccc;
   padding: 1rem;
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
-
+.mobilni-menu.zobrazit {
+  display: block;
+}
 .mobilni-menu ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
 .mobilni-menu li {
   margin-bottom: 0.5rem;
 }
-
 .mobilni-menu a {
   text-decoration: none;
   color: #333;
   font-weight: bold;
 }
 
-/* Základní nastavení stránky */
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-.wrapper {
+/* Formuláře */
+form {
+  max-width: 600px;
+  margin: auto;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  gap: 15px;
+}
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+select {
+  box-sizing: border-box;
+}
+button,
+.publikovat-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #e20006;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover,
+.publikovat-btn:hover {
+  background-color: #c00005;
 }
 
-main {
-  flex: 1;
+/* Výpis článků */
+.clanek {
+  margin-bottom: 30px;
+}
+.clanek img {
+  margin-top: 10px;
+  border-radius: 5px;
+  max-width: 100%;
 }
 
-/* Styl footeru */
+/* Footer */
 .footer {
   background-color: #E20006;
-  color: #222;
+  color: #ffffff;
   padding: 30px 20px;
   border-top: 1px solid #ccc;
 }
-
 .footer-box {
   text-align: center;
 }
-
 .footer-title h2 {
   margin-bottom: 20px;
   font-size: 22px;
-  color: #ffffff;
 }
-
 .kontakt h3 {
   margin-bottom: 10px;
   font-size: 18px;
-  color: #ffffff;
 }
-
 .kontakt a {
   color: #ffffff;
   text-decoration: none;
 }
-
 .kontakt a:hover {
   text-decoration: underline;
 }
-
 .footer-menu ul {
   list-style: none;
   padding: 0;
@@ -255,83 +183,11 @@ main {
   flex-wrap: wrap;
   justify-content: center;
 }
-
 .footer-menu a {
   color: #ffffff;
   text-decoration: none;
   font-size: 15px;
 }
-
 .footer-menu a:hover {
   text-decoration: underline;
-}
-
-.clanek {
-  margin-bottom: 30px;
-}
-.clanek img {
-  margin-top: 10px;
-  border-radius: 5px;
-}
-input[type="text"],
-textarea {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-sizing: border-box;
-}
-
-.publikovat-btn {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #e20006;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.mobilni-menu {
-  display: none;
-  background-color: #f9f9f9;
-  padding: 10px;
-}
-
-.mobilni-menu.zobrazit {
-  display: block;
-}
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  max-width: 600px;
-  margin: auto;
-}
-
-input[type="text"],
-textarea {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-button {
-  padding: 10px;
-  font-size: 16px;
-  background-color: #e20006;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-select {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  width: 100%;
-  box-sizing: border-box;
 }
