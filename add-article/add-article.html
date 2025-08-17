@@ -40,33 +40,24 @@
     <section class="container">
       <h2>Přidat nový článek</h2>
       <form id="articleForm">
-        <form id="formular">
-          <label for="title">Nadpis článku:</label><br />
-          <input type="text" id="title" name="title" required /><br /><br />
-        
-          <label for="section">Sekce:</label><br />
-          <input type="text" id="section" name="section" required /><br /><br />
-        
-          <label for="content">Obsah článku:</label><br />
-          <textarea id="content" name="content" rows="6" required></textarea><br /><br />
-        
-          <label for="image">Obrázek (URL):</label><br />
-          <input type="text" id="image" name="image" /><br /><br />
-        
-          <label>
-            Zobrazit na hlavní stránce
-            <input type="checkbox" id="showOnHomepage" />
-          </label><br /><br />
-        
-          <button type="submit" style="padding: 10px 20px; font-size: 16px; background-color: #e20006; color: white; border: none; border-radius: 8px;">
-            Publikovat článek
-          </button>
-        </form>
-        
-      </button type="submit">Publikovat</button>
+        <input type="text" id="title" name="title" placeholder="Nadpis článku" required /><br /><br />
+  
+        <input type="text" id="section" name="section" placeholder="Sekce (např. kultura, sport...)" required /><br /><br />
+  
+        <textarea id="content" name="content" rows="6" placeholder="Obsah článku..." required></textarea><br /><br />
+  
+        <input type="text" id="image" name="image" placeholder="Obrázek (URL)" /><br /><br />
+  
+        <label>
+          <input type="checkbox" id="showOnHomepage" />
+          Zobrazit na hlavní stránce
+        </label><br /><br />
+  
+        <button type="submit" class="publikovat-btn">Publikovat článek</button>
       </form>
     </section>
   </main>
+  
 
   <script>
     // Kontrola přihlášení
@@ -190,6 +181,36 @@ document.getElementById("formular").onsubmit = function (e) {
   alert("Článek byl úspěšně publikován!");
   window.location.href = "../index.html";
 };
+document.getElementById("articleForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const title = document.getElementById("title").value.trim();
+  const section = document.getElementById("section").value.trim();
+  const content = document.getElementById("content").value.trim();
+  const image = document.getElementById("image").value.trim();
+  const showOnHomepage = document.getElementById("showOnHomepage").checked;
+
+  if (!title || !section || !content) {
+    alert("Prosím vyplňte všechna povinná pole.");
+    return;
+  }
+
+  const novyClanek = {
+    title,
+    section,
+    content,
+    image,
+    showOnHomepage
+  };
+
+  const clanky = JSON.parse(localStorage.getItem("clanky")) || [];
+  clanky.push(novyClanek);
+  localStorage.setItem("clanky", JSON.stringify(clanky));
+
+  alert("Článek byl úspěšně publikován!");
+  window.location.href = "../index.html";
+});
+
 
   </script>
    <footer class="footer">
