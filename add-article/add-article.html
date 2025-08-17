@@ -40,27 +40,29 @@
     <section class="container">
       <h2>Přidat nový článek</h2>
       <form id="articleForm">
-        <label for="title">Nadpis článku:</label>
-        <input type="text" id="title" name="title" placeholder="Nadpis článku" required />
-
-        <label for="section">Sekce článku:</label>
-        <select id="section" name="section" required>
-          <option value="">-- Vyberte sekci --</option>
-          <option value="zpravy">Zprávy</option>
-          <option value="kultura">Kultura</option>
-          <option value="sport">Sport</option>
-          <option value="oznameni">Oznámení</option>
-          <option value="komunita">Komunita</option>
-        </select>
-
-        <label for="content">Obsah článku:</label>
-        <textarea id="content" name="content" rows="10" placeholder="Obsah článku" required></textarea>
-        <label for="image">Obrázek k článku:</label>
-        <input type="file" id="image" name="image" accept="image/*" />
-        <label>
-          <input type="checkbox" id="showOnHomepage" />
-          Zobrazit na hlavní stránce
-        </label>
+        <form id="formular">
+          <label for="title">Nadpis článku:</label><br />
+          <input type="text" id="title" name="title" required /><br /><br />
+        
+          <label for="section">Sekce:</label><br />
+          <input type="text" id="section" name="section" required /><br /><br />
+        
+          <label for="content">Obsah článku:</label><br />
+          <textarea id="content" name="content" rows="6" required></textarea><br /><br />
+        
+          <label for="image">Obrázek (URL):</label><br />
+          <input type="text" id="image" name="image" /><br /><br />
+        
+          <label>
+            <input type="checkbox" id="showOnHomepage" />
+            Zobrazit na hlavní stránce
+          </label><br /><br />
+        
+          <button type="submit" style="padding: 10px 20px; font-size: 16px; background-color: #007bff; color: white; border: none; border-radius: 5px;">
+            Publikovat článek
+          </button>
+        </form>
+        
       </button type="submit">Publikovat</button>
       </form>
     </section>
@@ -164,6 +166,30 @@ const article = {
   showOnHomepage // nová vlastnost
 };
 
+document.getElementById("formular").onsubmit = function (e) {
+  e.preventDefault();
+
+  const title = document.getElementById("title").value;
+  const section = document.getElementById("section").value;
+  const content = document.getElementById("content").value;
+  const image = document.getElementById("image").value;
+  const showOnHomepage = document.getElementById("showOnHomepage").checked;
+
+  const novyClanek = {
+    title,
+    section,
+    content,
+    image,
+    showOnHomepage
+  };
+
+  const clanky = JSON.parse(localStorage.getItem("clanky")) || [];
+  clanky.push(novyClanek);
+  localStorage.setItem("clanky", JSON.stringify(clanky));
+
+  alert("Článek byl úspěšně publikován!");
+  window.location.href = "../index.html";
+};
 
   </script>
    <footer class="footer">
