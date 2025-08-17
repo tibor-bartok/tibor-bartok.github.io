@@ -49,6 +49,15 @@
   </main>
 
   <script>
+    // Zobrazení odkazu "Přidat článek" mimo window.onload
+    if (localStorage.getItem("prihlasen") === "ano") {
+      const odkazPridat = document.getElementById("odkaz-pridat");
+      if (odkazPridat) {
+        odkazPridat.innerHTML =
+          '<a href="add-article/add-article.html">Přidat článek</a>';
+      }
+    }
+  
     window.onload = function () {
       // Navigace
       const nav = document.getElementById("navigace");
@@ -62,13 +71,6 @@
           window.location.href = "index.html";
         };
         nav.appendChild(odhlasitBtn);
-  
-        // Odkaz pro přidání článku
-        const odkazPridat = document.getElementById("odkaz-pridat");
-        if (odkazPridat) {
-          odkazPridat.innerHTML =
-            '<a href="add-article/add-article.html">Přidat článek</a>';
-        }
       } else {
         const prihlasitLink = document.createElement("a");
         prihlasitLink.href = "login/login.html";
@@ -109,6 +111,9 @@
       }
     };
   </script>
+  
+
+
   
   <footer class="footer">
     <div class="footer-box">
