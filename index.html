@@ -49,72 +49,67 @@
   </main>
 
   <script>
-    if (localStorage.getItem("prihlasen") === "ano") {
-      document.getElementById("odkaz-pridat").innerHTML =
-        '<a href="add-article/add-article.html">Přidat článek</a>';
-    }
     window.onload = function () {
-  const nav = document.getElementById("navigace");
-  nav.innerHTML = '<a href="index.html">Domů</a>';
-
-  if (localStorage.getItem("prihlasen") === "ano") {
-    const odhlasitBtn = document.createElement("button");
-    odhlasitBtn.textContent = "Odhlásit se";
-    odhlasitBtn.onclick = function () {
-      localStorage.removeItem("prihlasen");
-      window.location.href = "index.html";
+      // Navigace
+      const nav = document.getElementById("navigace");
+      nav.innerHTML = '<a href="index.html">Domů</a>';
+  
+      if (localStorage.getItem("prihlasen") === "ano") {
+        const odhlasitBtn = document.createElement("button");
+        odhlasitBtn.textContent = "Odhlásit se";
+        odhlasitBtn.onclick = function () {
+          localStorage.removeItem("prihlasen");
+          window.location.href = "index.html";
+        };
+        nav.appendChild(odhlasitBtn);
+  
+        // Odkaz pro přidání článku
+        const odkazPridat = document.getElementById("odkaz-pridat");
+        if (odkazPridat) {
+          odkazPridat.innerHTML =
+            '<a href="add-article/add-article.html">Přidat článek</a>';
+        }
+      } else {
+        const prihlasitLink = document.createElement("a");
+        prihlasitLink.href = "login/login.html";
+        prihlasitLink.textContent = "Přihlásit se";
+        nav.appendChild(prihlasitLink);
+      }
+  
+      // Hamburger menu
+      const hamburger = document.getElementById("hamburger");
+      if (hamburger) {
+        hamburger.onclick = function () {
+          const menu = document.getElementById("mobilniMenu");
+          if (menu) {
+            menu.classList.toggle("zobrazit");
+          }
+        };
+      }
+  
+      // Výpis článků
+      const clanky = JSON.parse(localStorage.getItem("clanky")) || [];
+      const vypis = document.getElementById("vypisClanku");
+  
+      if (vypis) {
+        clanky.reverse().forEach(clanek => {
+          if (clanek.showOnHomepage) {
+            const div = document.createElement("div");
+            div.className = "clanek";
+            div.innerHTML = `
+              <h3>${clanek.title}</h3>
+              <p><strong>Sekce:</strong> ${clanek.section}</p>
+              <p>${clanek.content}</p>
+              ${clanek.image ? `<img src="${clanek.image}" alt="Obrázek článku" style="max-width:100%;"/>` : ""}
+              <hr/>
+            `;
+            vypis.appendChild(div);
+          }
+        });
+      }
     };
-    nav.appendChild(odhlasitBtn);
-  } else {
-    const prihlasitLink = document.createElement("a");
-    prihlasitLink.href = "login/login.html";
-    prihlasitLink.textContent = "Přihlásit se";
-    nav.appendChild(prihlasitLink);
-  }
-};
-document.getElementById("hamburger").onclick = function () {
-  const nav = document.getElementById("navigace");
-  nav.classList.toggle("zobrazit");
-};
-document.getElementById("hamburger").onclick = function () {
-  const menu = document.getElementById("mobilniMenu");
-  menu.style.display = menu.style.display === "block" ? "none" : "block";
-};
-
-const clanky = JSON.parse(localStorage.getItem("clanky")) || [];
-const vypis = document.getElementById("vypisClanku");
-
-clanky.reverse().forEach(clanek => {
-  const div = document.createElement("div");
-  div.className = "clanek";
-  div.innerHTML = `
-    <h3>${clanek.title}</h3>
-    <p><strong>Sekce:</strong> ${clanek.section}</p>
-    <p>${clanek.content}</p>
-    ${clanek.image ? `<img src="${clanek.image}" alt="Obrázek článku" style="max-width:100%;"/>` : ""}
-    <hr/>
-  `;
-  vypis.appendChild(div);
-});
-const clanky = JSON.parse(localStorage.getItem("clanky")) || [];
-const vypis = document.getElementById("vypisClanku");
-
-clanky.reverse().forEach(clanek => {
-  if (clanek.showOnHomepage) {
-    const div = document.createElement("div");
-    div.className = "clanek";
-    div.innerHTML = `
-      <h3>${clanek.title}</h3>
-      <p><strong>Sekce:</strong> ${clanek.section}</p>
-      <p>${clanek.content}</p>
-      ${clanek.image ? `<img src="${clanek.image}" alt="Obrázek článku" style="max-width:100%;"/>` : ""}
-      <hr/>
-    `;
-    vypis.appendChild(div);
-  }
-});
-
   </script>
+  
   <footer class="footer">
     <div class="footer-box">
       <div class="footer-title">
