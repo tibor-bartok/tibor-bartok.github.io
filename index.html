@@ -42,6 +42,8 @@
       <h2>Vítejte na našem webu esestajovice.cz</h2>
       <p>(Ne)oficiální stránka pro sdílení informací, nápadů a komunitních akcí pro Šestajovické obyvatele.</p>
     </section>
+    <section id="vypisClanku"></section>
+
 
 
   </main>
@@ -78,6 +80,22 @@ document.getElementById("hamburger").onclick = function () {
   const menu = document.getElementById("mobilniMenu");
   menu.style.display = menu.style.display === "block" ? "none" : "block";
 };
+
+const clanky = JSON.parse(localStorage.getItem("clanky")) || [];
+const vypis = document.getElementById("vypisClanku");
+
+clanky.reverse().forEach(clanek => {
+  const div = document.createElement("div");
+  div.className = "clanek";
+  div.innerHTML = `
+    <h3>${clanek.title}</h3>
+    <p><strong>Sekce:</strong> ${clanek.section}</p>
+    <p>${clanek.content}</p>
+    ${clanek.image ? `<img src="${clanek.image}" alt="Obrázek článku" style="max-width:100%;"/>` : ""}
+    <hr/>
+  `;
+  vypis.appendChild(div);
+});
 
   </script>
   <footer class="footer">

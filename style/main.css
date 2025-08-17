@@ -265,3 +265,11 @@ main {
 .footer-menu a:hover {
   text-decoration: underline;
 }
+
+.clanek {
+  margin-bottom: 30px;
+}
+.clanek img {
+  margin-top: 10px;
+  border-radius: 5px;
+}

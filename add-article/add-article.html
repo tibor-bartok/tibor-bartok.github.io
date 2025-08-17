@@ -113,6 +113,43 @@
   menu.style.display = menu.style.display === "block" ? "none" : "block";
 };
 
+document.getElementById("articleForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const title = document.getElementById("title").value.trim();
+  const section = document.getElementById("section").value;
+  const content = document.getElementById("content").value.trim();
+  const imageInput = document.getElementById("image");
+  const file = imageInput.files[0];
+
+  const article = {
+    title,
+    section,
+    content,
+    date: new Date().toISOString(),
+    image: null
+  };
+
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      article.image = e.target.result;
+      ulozClanek(article);
+    };
+    reader.readAsDataURL(file);
+  } else {
+    ulozClanek(article);
+  }
+});
+
+function ulozClanek(article) {
+  const clanky = JSON.parse(localStorage.getItem("clanky")) || [];
+  clanky.push(article);
+  localStorage.setItem("clanky", JSON.stringify(clanky));
+  alert("Článek byl úspěšně publikován.");
+  document.getElementById("articleForm").reset();
+}
+
   </script>
    <footer class="footer">
     <div class="footer-box">
