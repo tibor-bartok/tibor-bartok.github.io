@@ -20,18 +20,19 @@
 
     <div id="hamburger">☰ Menu</div>
 
-    <nav class="mobilni-menu" id="mobilniMenu">
-      <ul>
-        <li><a href="aktuality.html">Aktuality</a></li>
-        <li><a href="urad.html">Úřad</a></li>
-        <li><a href="odpad.html">Svoz odpadu</a></li>
-        <li><a href="volby.html">Komunální volby</a></li>
-        <li><a href="kultura.html">Kultura</a></li>
-        <li><a href="sport.html">Sport</a></li>
-        <li><a href="oznameni.html">Oznámení</a></li>
-        <li><a href="komunita.html">Komunita</a></li>
-      </ul>
-    </nav>
+<nav class="mobilni-menu" id="mobilniMenu">
+  <ul>
+    <li><a href="aktuality.html">Aktuality</a></li>
+    <li><a href="urad.html">Úřad</a></li>
+    <li><a href="odpad.html">Svoz odpadu</a></li>
+    <li><a href="volby.html">Komunální volby</a></li>
+    <li><a href="kultura.html">Kultura</a></li>
+    <li><a href="sport.html">Sport</a></li>
+    <li><a href="oznameni.html">Oznámení</a></li>
+    <li><a href="komunita.html">Komunita</a></li>
+  </ul>
+</nav>
+
   </header>
 
   <main>
@@ -65,7 +66,11 @@
   </footer>
 
   <script>
-  window.onload = function () {
+ document.getElementById("hamburger").onclick = function () {
+  const menu = document.getElementById("mobilniMenu");
+  menu.classList.toggle("zobrazit");
+};
+ window.onload = function () {
     // Přidat článek
     const odkazPridat = document.getElementById("odkaz-pridat");
     if (localStorage.getItem("prihlasen") === "ano" && odkazPridat) {

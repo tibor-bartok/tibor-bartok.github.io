@@ -40,21 +40,33 @@
     <section class="container">
       <h2>Přidat nový článek</h2>
       <form id="articleForm">
-        <input type="text" id="title" name="title" placeholder="Nadpis článku" required /><br /><br />
-  
-        <input type="text" id="section" name="section" placeholder="Sekce (např. kultura, sport...)" required /><br /><br />
-  
-        <textarea id="content" name="content" rows="6" placeholder="Obsah článku..." required></textarea><br /><br />
-  
-        <input type="text" id="image" name="image" placeholder="Obrázek (URL)" /><br /><br />
-  
+        <input type="text" id="title" placeholder="Nadpis článku" required />
+      
+        <select id="section" required>
+          <option value="">-- Vyber sekci --</option>
+          <option value="Aktuality">Aktuality</option>
+          <option value="Úřad">Úřad</option>
+          <option value="Svoz odpadu">Svoz odpadu</option>
+          <option value="Komunální volby">Komunální volby</option>
+          <option value="Kultura">Kultura</option>
+          <option value="Sport">Sport</option>
+          <option value="Oznámení">Oznámení</option>
+          <option value="Komunita">Komunita</option>
+        </select>
+        
+      
+        <textarea id="content" rows="6" placeholder="Obsah článku..." required></textarea>
+      
+        <input type="file" id="image" accept="image/*" />
+      
         <label>
           <input type="checkbox" id="showOnHomepage" />
           Zobrazit na hlavní stránce
-        </label><br /><br />
-  
-        <button type="submit" class="publikovat-btn">Publikovat článek</button>
+        </label>
+      
+        <button type="submit">Publikovat článek</button>
       </form>
+      
     </section>
   </main>
   
@@ -210,6 +222,59 @@ document.getElementById("articleForm").addEventListener("submit", function (e) {
   alert("Článek byl úspěšně publikován!");
   window.location.href = "../index.html";
 });
+document.getElementById("articleForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const title = document.getElementById("title").value.trim();
+  const section = document.getElementById("section").value.trim();
+  const content = document.getElementById("content").value.trim();
+  const showOnHomepage = document.getElementById("showOnHomepage").checked;
+  const imageInput = document.getElementById("image");
+  const file = imageInput.files[0];
+
+  if (!title || !section || !content) {
+    alert("Vyplň všechna povinná pole.");
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function () {
+    const novyClanek = {
+      title,
+      section,
+      content,
+      image: reader.result,
+      showOnHomepage
+    };
+
+    const clanky = JSON.parse(localStorage.getItem("clanky")) || [];
+    clanky.push(novyClanek);
+    localStorage.setItem("clanky", JSON.stringify(clanky));
+
+    alert("Článek byl úspěšně publikován!");
+    window.location.href = "../index.html";
+  };
+
+  if (file) {
+    reader.readAsDataURL(file);
+  } else {
+    const novyClanek = {
+      title,
+      section,
+      content,
+      image: null,
+      showOnHomepage
+    };
+
+    const clanky = JSON.parse(localStorage.getItem("clanky")) || [];
+    clanky.push(novyClanek);
+    localStorage.setItem("clanky", JSON.stringify(clanky));
+
+    alert("Článek byl úspěšně publikován!");
+    window.location.href = "../index.html";
+  }
+});
+
 
 
   </script>
